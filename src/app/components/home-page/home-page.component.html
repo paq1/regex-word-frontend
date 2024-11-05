@@ -1,0 +1,34 @@
+<div>
+
+  <div class="regex-part-container">
+
+    <div class="regex-part">regex 1</div>
+    <div class="regex-part">regex 2</div>
+    <div class="regex-part">regex 3</div>
+
+  </div>
+
+  <div class="grid-word-view-container">
+    <table>
+      <tbody>
+
+        @for (word of words; track word) {
+          <tr [ngClass]="{
+            'line-empty': isNothing(word),
+            'line-error': isFailed(word),
+            'line-succeed': isSucceeded(word)
+          }">
+            <td>A</td>
+            <td>_</td>
+            <td>_</td>
+            <td>_</td>
+            <td>_</td>
+            <td>_</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+
+</div>

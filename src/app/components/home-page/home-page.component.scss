@@ -1,0 +1,28 @@
+.regex-part-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.regex-part {
+  padding-left: 60px;
+  padding-right: 60px;
+}
+
+.grid-word-view-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  font-size: 60px;
+}
+
+.line-empty {
+  background-color: blue;
+}
+.line-error {
+  background-color: red;
+}
+.line-succeed {
+  background-color: green;
+}
