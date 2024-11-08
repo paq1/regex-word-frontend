@@ -1,6 +1,6 @@
-import {Component} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, HostListener, Inject} from '@angular/core';
 import {LineModel} from '../../models/line.model';
-import {NgClass} from '@angular/common';
+import {DOCUMENT, NgClass} from '@angular/common';
 
 @Component({
   selector: 'app-home-page',
@@ -12,6 +12,13 @@ import {NgClass} from '@angular/common';
   styleUrl: './home-page.component.scss'
 })
 export class HomePageComponent {
+
+  @HostListener('document:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    // TODO : mettre la logique ici
+    console.log(event.key);
+  }
+
   words: LineModel[] = [
     {
       word: "A_____"
@@ -37,8 +44,16 @@ export class HomePageComponent {
     },
   ]
 
-  isSucceeded(word: LineModel): boolean { return word.isSucceeded || false; };
-  isFailed(word: LineModel): boolean { return (!word.isSucceeded && word.isSucceeded !== undefined); };
-  isNothing(word: LineModel): boolean { return word.isSucceeded === undefined; };
+  isSucceeded(word: LineModel): boolean {
+    return word.isSucceeded || false;
+  };
+
+  isFailed(word: LineModel): boolean {
+    return (!word.isSucceeded && word.isSucceeded !== undefined);
+  };
+
+  isNothing(word: LineModel): boolean {
+    return word.isSucceeded === undefined;
+  };
 
 }
