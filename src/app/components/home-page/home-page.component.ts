@@ -2,7 +2,6 @@ import {Component, HostListener} from '@angular/core';
 import {LineModel} from '../../models/line.model';
 import {NgClass} from '@angular/common';
 import {WordSdd} from '../../models/word.model';
-import {BackspaceKeyPressed, CoRKeyPressed, EnterKeyPressed, LetterKeyPressed} from '../../models/keypressed.behaviors';
 import {WordUpdateService} from '../../services/word.update.service';
 
 

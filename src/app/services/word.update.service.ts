@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {WordSdd} from '../models/word.model';
-import {BackspaceKeyPressed, CoRKeyPressed, EnterKeyPressed, LetterKeyPressed} from '../models/keypressed.behaviors';
+import {BackspaceKeyPressed, CoRKeyPressed, EnterKeyPressed, LetterKeyPressed} from './keypressed.behaviors';
 
 @Injectable({
   providedIn: 'root'

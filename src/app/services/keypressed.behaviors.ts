@@ -1,4 +1,4 @@
-import {WordSdd} from './word.model';
+import {WordSdd} from '../models/word.model';
 
 
 export abstract class CoRKeyPressed {
