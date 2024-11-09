@@ -4,6 +4,17 @@
   align-items: center;
 }
 
+.cellule {
+  width: 70px;
+  height: 70px;
+  align-content: center;
+  position: relative;
+  text-align: center;
+  //justify-content: center;
+  //align-items: center;
+  //flex-direction: row;
+}
+
 .regex-part {
   padding-left: 60px;
   padding-right: 60px;

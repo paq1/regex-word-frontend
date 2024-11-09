@@ -1,6 +1,10 @@
-import {AfterViewInit, Component, ElementRef, HostListener, Inject} from '@angular/core';
+import {Component, HostListener} from '@angular/core';
 import {LineModel} from '../../models/line.model';
-import {DOCUMENT, NgClass} from '@angular/common';
+import {NgClass} from '@angular/common';
+import {WordSdd} from '../../models/word.model';
+import {BackspaceKeyPressed, CoRKeyPressed, EnterKeyPressed, LetterKeyPressed} from '../../models/keypressed.behaviors';
+import {WordUpdateService} from '../../services/word.update.service';
+
 
 @Component({
   selector: 'app-home-page',
@@ -13,36 +17,18 @@ import {DOCUMENT, NgClass} from '@angular/common';
 })
 export class HomePageComponent {
 
-  @HostListener('document:keydown', ['$event'])
-  handleKeyboardEvent(event: KeyboardEvent) {
-    // TODO : mettre la logique ici
-    console.log(event.key);
+
+  constructor(private wordUpdateService: WordUpdateService) {
   }
 
-  words: LineModel[] = [
-    {
-      word: "A_____"
-    },
-    {
-      word: "A_____",
-      isSucceeded: false
-    },
-    {
-      word: "A_____",
-      isSucceeded: true
-    },
-    {
-      word: "A_____",
-      isSucceeded: false
-    },
-    {
-      word: "A_____",
-      isSucceeded: true
-    },
-    {
-      word: "A_____"
-    },
-  ]
+  get wordsSdd(): WordSdd {
+    return this.wordUpdateService.wordsSdd;
+  }
+
+  @HostListener('document:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    this.wordUpdateService.mutateWords(event.key);
+  }
 
   isSucceeded(word: LineModel): boolean {
     return word.isSucceeded || false;
@@ -56,4 +42,5 @@ export class HomePageComponent {
     return word.isSucceeded === undefined;
   };
 
+  protected readonly Array = Array;
 }
