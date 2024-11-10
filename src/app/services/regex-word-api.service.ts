@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable, of} from 'rxjs';
 import {RegexApiModel} from '../models/regex-api.model';
 import {ValidRegexApiModel} from '../models/valid-regex-api.model';

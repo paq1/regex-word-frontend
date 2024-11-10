@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {WordSdd} from '../models/word.model';
 import {BackspaceKeyPressed, CoRKeyPressed, EnterKeyPressed, LetterKeyPressed} from './keypressed.behaviors';
 import {RegexWordApiService} from './regex-word-api.service';
-import {from, map, Observable} from 'rxjs';
+import {map, Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'

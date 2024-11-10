@@ -38,7 +38,6 @@ export class EnterKeyPressed extends CoRKeyPressed {
   constructor(
     private readonly regexWordApiService: RegexWordApiService,
     next: CoRKeyPressed | undefined
-
   ) {
     super(next);
   }
@@ -56,7 +55,7 @@ export class EnterKeyPressed extends CoRKeyPressed {
             map((isValid) => {
               return {
                 ...from,
-                words: [ ...from.words.slice(0, -1), { word: `${currentWord.word}`, isSucceeded: isValid} ],
+                words: [...from.words.slice(0, -1), {word: `${currentWord.word}`, isSucceeded: isValid}],
                 currentIndex: from.currentIndex < from.maxIndex ? from.currentIndex + 1 : from.currentIndex,
               }
             })
@@ -82,7 +81,7 @@ export class BackspaceKeyPressed extends CoRKeyPressed {
 
       if (currentWord.word.length > 1) {
 
-        return of({ ...from, words: [ ...from.words.slice(0, -1), { word: currentWord.word.slice(0, -1) } ] });
+        return of({...from, words: [...from.words.slice(0, -1), {word: currentWord.word.slice(0, -1)}]});
 
       } else {
         return of(from);
@@ -104,7 +103,7 @@ export class LetterKeyPressed extends CoRKeyPressed {
       const currentWord = from.words[from.currentIndex];
 
       if (currentWord.word.length <= from.length - 1) {
-        return of({ ...from, words: [...from.words.slice(0, -1), { word: `${currentWord.word}${key}` }] });
+        return of({...from, words: [...from.words.slice(0, -1), {word: `${currentWord.word}${key}`}]});
       } else {
         return of(from);
       }
