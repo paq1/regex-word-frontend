@@ -1,6 +1,6 @@
 import {WordSdd} from '../models/word.model';
 import {RegexWordApiService} from './regex-word-api.service';
-import {from, lastValueFrom, map, mergeAll, mergeMap, Observable, of} from 'rxjs';
+import {map, mergeMap, Observable, of} from 'rxjs';
 
 
 export abstract class CoRKeyPressed {
@@ -45,19 +45,15 @@ export class EnterKeyPressed extends CoRKeyPressed {
 
   override resolve_children(from: WordSdd, key: string): Observable<WordSdd | undefined> {
 
-    console.log("pouet 2");
     if (key.toLowerCase() === "enter") {
       const currentWord = from.words[from.currentIndex];
-      console.log("pouet");
       if (currentWord.word.length === from.length) {
-        console.log("ici")
-        const words$ =  this
+        return this
           .regexWordApiService
           .checkWordValid(currentWord.word)
           .pipe(
             map((result) => result.data.isValid),
             map((isValid) => {
-              console.log(isValid);
               return {
                 ...from,
                 words: [ ...from.words.slice(0, -1), { word: `${currentWord.word}`, isSucceeded: isValid} ],
@@ -65,13 +61,10 @@ export class EnterKeyPressed extends CoRKeyPressed {
               }
             })
           )
-        return words$
       } else {
-        console.log("la")
         return of(from);
       }
     } else {
-      console.log("encore la")
       return of(undefined);
     }
   }
