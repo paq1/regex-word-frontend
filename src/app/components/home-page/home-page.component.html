@@ -12,19 +12,40 @@
     <table>
       <tbody>
 
-        @for (word of words; track word) {
-          <tr [ngClass]="{
-            'line-empty': isNothing(word),
-            'line-error': isFailed(word),
-            'line-succeed': isSucceeded(word)
-          }">
-            <td>A</td>
-            <td>_</td>
-            <td>_</td>
-            <td>_</td>
-            <td>_</td>
-            <td>_</td>
-          </tr>
+        @for (indexword of Array.from(Array(wordsSdd.try).keys()); track indexword) {
+
+          @if (indexword < wordsSdd.words.length) {
+            <tr [ngClass]="{
+              'line-empty': isNothing(wordsSdd.words[indexword]),
+              'line-error': isFailed(wordsSdd.words[indexword]),
+              'line-succeed': isSucceeded(wordsSdd.words[indexword])
+            }">
+
+              @for (i of Array.from(Array(wordsSdd.length).keys()); track i) {
+
+                @if (i <= wordsSdd.words[indexword].word.length - 1) {
+                  <td class="cellule">{{ wordsSdd.words[indexword].word[i] }}</td>
+                } @else {
+                  <td class="cellule">_</td>
+                }
+              }
+
+            </tr>
+          } @else {
+            <tr [ngClass]="{
+              'line-empty': true,
+            }">
+
+              @for (i of Array.from(Array(wordsSdd.length).keys()); track i) {
+
+                @if (i == 0) {
+                  <td class="cellule">{{ wordsSdd.firstLetter }}</td>
+                } @else {
+                  <td class="cellule">_</td>
+                }
+              }
+            </tr>
+          }
         }
       </tbody>
     </table>

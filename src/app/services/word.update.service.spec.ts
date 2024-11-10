@@ -1,13 +1,13 @@
 import {TestBed} from '@angular/core/testing';
 
-import {RegexWordApiService} from './regex-word-api.service';
+import {WordUpdateService} from './word.update.service';
 
-describe('RegexWordApiService', () => {
-  let service: RegexWordApiService;
+describe('WordUpdateService', () => {
+  let service: WordUpdateService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(RegexWordApiService);
+    service = TestBed.inject(WordUpdateService);
   });
 
   it('should be created', () => {
