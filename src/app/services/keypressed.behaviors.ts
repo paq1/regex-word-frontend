@@ -1,6 +1,6 @@
 import {WordSdd} from '../models/word.model';
 import {RegexWordApiService} from './regex-word-api.service';
-import {from, lastValueFrom, map, mergeAll, mergeMap, Observable} from 'rxjs';
+import {from, lastValueFrom, map, mergeAll, mergeMap, Observable, of} from 'rxjs';
 
 
 export abstract class CoRKeyPressed {
@@ -11,28 +11,26 @@ export abstract class CoRKeyPressed {
     this.next = next;
   }
 
-  async resolve(fromWord: WordSdd, key: string): Promise<WordSdd | undefined> {
+  resolve(fromWord: WordSdd, key: string): Observable<WordSdd | undefined> {
 
-    let words$ = from(this.resolve_children(fromWord, key))
+    return this.resolve_children(fromWord, key)
       .pipe(
         map(maybeResolved => {
           if (maybeResolved !== undefined) {
-            return from(new Promise(resolve => resolve(maybeResolved))) as Observable<WordSdd | undefined>;
+            return of(maybeResolved);
           } else {
             if (this.next === undefined) {
-              return from(new Promise(resolve => resolve(undefined))) as Observable<WordSdd | undefined>;
+              return of(undefined);
             } else {
-              return from(this.next.resolve(fromWord, key));
+              return this.next.resolve(fromWord, key);
             }
           }
         }),
         mergeMap(data => data)
       );
-
-    return lastValueFrom(words$)
   }
 
-  abstract resolve_children(from: WordSdd, key: string): Promise<WordSdd | undefined>
+  abstract resolve_children(from: WordSdd, key: string): Observable<WordSdd | undefined>
 }
 
 export class EnterKeyPressed extends CoRKeyPressed {
@@ -45,7 +43,7 @@ export class EnterKeyPressed extends CoRKeyPressed {
     super(next);
   }
 
-  override resolve_children(from: WordSdd, key: string): Promise<WordSdd | undefined> {
+  override resolve_children(from: WordSdd, key: string): Observable<WordSdd | undefined> {
 
     console.log("pouet 2");
     if (key.toLowerCase() === "enter") {
@@ -67,14 +65,14 @@ export class EnterKeyPressed extends CoRKeyPressed {
               }
             })
           )
-        return lastValueFrom(words$)
+        return words$
       } else {
         console.log("la")
-        return new Promise(resolve => resolve(from));
+        return of(from);
       }
     } else {
       console.log("encore la")
-      return new Promise(resolve => resolve(undefined));
+      return of(undefined);
     }
   }
 }
@@ -85,19 +83,19 @@ export class BackspaceKeyPressed extends CoRKeyPressed {
     super(next);
   }
 
-  override resolve_children(from: WordSdd, key: string): Promise<WordSdd | undefined> {
+  override resolve_children(from: WordSdd, key: string): Observable<WordSdd | undefined> {
     if (key.toLowerCase() === "backspace") {
       const currentWord = from.words[from.currentIndex];
 
       if (currentWord.word.length > 1) {
 
-        return new Promise(resolve => resolve({ ...from, words: [ ...from.words.slice(0, -1), { word: currentWord.word.slice(0, -1) } ] }));
+        return of({ ...from, words: [ ...from.words.slice(0, -1), { word: currentWord.word.slice(0, -1) } ] });
 
       } else {
-        return new Promise(resolve => resolve(from));
+        return of(from);
       }
     } else {
-      return new Promise(resolve => resolve(undefined));
+      return of(undefined);
     }
   }
 }
@@ -108,17 +106,17 @@ export class LetterKeyPressed extends CoRKeyPressed {
     super(next);
   }
 
-  override resolve_children(from: WordSdd, key: string): Promise<WordSdd | undefined> {
+  override resolve_children(from: WordSdd, key: string): Observable<WordSdd | undefined> {
     if (this.isLetter(key.toLowerCase())) {
       const currentWord = from.words[from.currentIndex];
 
       if (currentWord.word.length <= from.length - 1) {
-        return new Promise(resolve => resolve({ ...from, words: [...from.words.slice(0, -1), { word: `${currentWord.word}${key}` }] }));
+        return of({ ...from, words: [...from.words.slice(0, -1), { word: `${currentWord.word}${key}` }] });
       } else {
-        return new Promise(resolve => resolve(from));
+        return of(from);
       }
     } else {
-      return new Promise(resolve => resolve(undefined));
+      return of(undefined);
     }
   }
 

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {WordSdd} from '../models/word.model';
 import {BackspaceKeyPressed, CoRKeyPressed, EnterKeyPressed, LetterKeyPressed} from './keypressed.behaviors';
 import {RegexWordApiService} from './regex-word-api.service';
-import {from} from 'rxjs';
+import {from, map, Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -32,7 +32,7 @@ export class WordUpdateService {
   }
 
   mutateWords(key: string): void {
-    from(this.handleKeypress(key))
+    this.handleKeypress(key)
       .subscribe({
         next: data => {
           this.wordsSdd = data;
@@ -43,13 +43,12 @@ export class WordUpdateService {
       });
   }
 
-  async handleKeypress(key: string): Promise<WordSdd> {
+  handleKeypress(key: string): Observable<WordSdd> {
     const keyValue = key.toLowerCase();
     const maybeNewLine =
       this.wordsSdd.words.length == this.wordsSdd.currentIndex ? [...this.wordsSdd.words, {word: this.wordsSdd.firstLetter}] : this.wordsSdd.words
     const wordsWithNewLine: WordSdd = {...this.wordsSdd, words: maybeNewLine};
-    let v = await this.corKeyPressed.resolve(wordsWithNewLine, keyValue)
-    return v || wordsWithNewLine;
+    return this.corKeyPressed.resolve(wordsWithNewLine, keyValue).pipe(map(data => data || wordsWithNewLine));
   }
 
 }
