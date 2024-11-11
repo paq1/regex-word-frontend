@@ -5,7 +5,7 @@ import {WordSdd} from '../../models/word.model';
 import {WordUpdateService} from '../../services/word.update.service';
 import {Store} from '@ngrx/store';
 import {AppState, Table} from '../../store/states/RegexWord';
-import {Observable, tap} from 'rxjs';
+import {map, Observable, tap} from 'rxjs';
 import {initialLoad} from '../../store/actions/table.actions';
 
 
@@ -21,17 +21,19 @@ import {initialLoad} from '../../store/actions/table.actions';
 })
 export class HomePageComponent implements OnInit {
 
+  // table$: Observable<Table>;
 
-  constructor(private wordUpdateService: WordUpdateService, private store: Store<AppState>) {}
+  constructor(private wordUpdateService: WordUpdateService, private readonly store: Store<Table>) {
+    // this.table$ = this.store.select(state => state).pipe(tap(data => console.log("table tap : ", data)));
+  }
+
+  get getTable$(): Observable<Table> {
+    return this.store.select(state => state).pipe(map(data => ((data as any).tableReducer as Table)));
+  }
 
   ngOnInit(): void {
     this.store.dispatch(initialLoad());
     console.log('dispatcher')
-  }
-
-  get wordsSdd$(): Observable<WordSdd> {
-    console.log("loaddd")
-    return this.store.select('table').pipe(tap(data => console.log(data)));
   }
 
   @HostListener('document:keydown', ['$event'])

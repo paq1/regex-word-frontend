@@ -12,10 +12,9 @@
     <table>
       <tbody>
 
-        @let table = wordsSdd$ | async;
+        @let table = getTable$ | async;
         @if (table) {
           @for (indexword of Array.from(Array(table.try).keys()); track indexword) {
-
             @if (indexword < table.words.length) {
               <tr [ngClass]="{
               'line-empty': isNothing(table.words[indexword]),
