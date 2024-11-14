@@ -19,10 +19,7 @@ export const tableReducer = createReducer(
   initialState,
   on(loadRegexSucceed, (state, { regexApi }) => fromRegexToInitialTable(regexApi)),
   on(pressLetter, (state, { newState }) => {
-    console.log("reduce key pressed ok");
-    if (state.lastKeyboardAction !== "keydown") {
-      return { table: newState, lastKeyboardAction: "keydown" }
-    } else return state
+    return { table: newState, lastKeyboardAction: "keydown" }
   }),
   on(keyupLetter, state => {
     return {
@@ -42,6 +39,6 @@ function fromRegexToInitialTable(regexApi: RegexApiModel): AppState {
       firstLetter: regexApi.wordModel.firstLetter,
       words: []
     },
-    lastKeyboardAction: "empty"
+    lastKeyboardAction: "keyup"
   };
 }

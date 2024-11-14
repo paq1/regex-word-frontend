@@ -1,24 +1,17 @@
 import { Injectable } from '@angular/core';
-import {Store} from '@ngrx/store';
+import {select, Store} from '@ngrx/store';
 import {AppState} from '../store/states/RegexWord';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StoreManagerService {
 
-  constructor(private readonly store: Store<AppState>) { }
 
-  getCurrentState(): AppState | undefined {
-    let currentState: AppState | undefined = undefined;
+  readonly currentState$: Observable<AppState>;
 
-    this.store
-      .select(state => state)
-      .subscribe({
-        next: data => {
-          currentState = (data as any).tableReducer;
-        }
-      })
-    return currentState
+  constructor(private readonly store: Store<AppState>) {
+    this.currentState$ = this.store.pipe(select(state => (state as any).tableReducer))
   }
 }
