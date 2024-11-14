@@ -13,7 +13,6 @@ export class RegexWordApiService {
   }
 
   checkWordValid(word: string): Observable<ValidRegexApiModel> {
-    console.log(word);
     return of({
       data: {
         isValid: false,
