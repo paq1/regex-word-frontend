@@ -13,9 +13,11 @@ export class RegexWordApiService {
   }
 
   checkWordValid(word: string): Observable<ValidRegexApiModel> {
+
+    // TODO : contacter l'api pour connaitre la réponse
     return of({
       data: {
-        isValid: false,
+        isValid: word.toLowerCase() === "azerty",
       }
     })
   }
