@@ -45,9 +45,6 @@ export class EnterKeyPressed extends CoRKeyPressed {
   override resolve_children(from: WordSdd, key: string): Observable<WordSdd | undefined> {
 
     if (key.toLowerCase() === "enter") {
-
-      console.log('Enter key');
-
       const currentWord = from.words[from.currentIndex];
       if (currentWord.word.length === from.length) {
         return this
@@ -59,7 +56,7 @@ export class EnterKeyPressed extends CoRKeyPressed {
               return {
                 ...from,
                 words: [...from.words.slice(0, -1), {word: `${currentWord.word}`, isSucceeded: isValid}],
-                currentIndex: from.currentIndex < from.maxIndex ? from.currentIndex + 1 : from.currentIndex,
+                currentIndex: from.currentIndex < from.try - 1 ? from.currentIndex + 1 : from.currentIndex,
               }
             })
           )
@@ -80,9 +77,6 @@ export class BackspaceKeyPressed extends CoRKeyPressed {
 
   override resolve_children(from: WordSdd, key: string): Observable<WordSdd | undefined> {
     if (key.toLowerCase() === "backspace") {
-
-      console.log('Backspace pressed');
-
       const currentWord = from.words[from.currentIndex];
 
       if (currentWord.word.length > 1) {
@@ -106,9 +100,6 @@ export class LetterKeyPressed extends CoRKeyPressed {
 
   override resolve_children(from: WordSdd, key: string): Observable<WordSdd | undefined> {
     if (this.isLetter(key.toLowerCase())) {
-
-      console.log('Letter pressed');
-
       const currentWord = from.words[from.currentIndex];
 
       if (currentWord.word.length <= from.length - 1) {

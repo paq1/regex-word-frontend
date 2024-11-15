@@ -4,9 +4,10 @@ import {AsyncPipe, NgClass} from '@angular/common';
 import {WordSdd} from '../../models/word.model';
 import {WordUpdateService} from '../../services/word.update.service';
 import {Store} from '@ngrx/store';
-import {map, Observable} from 'rxjs';
-import {initialLoad, keyupLetter, pressLetter} from '../../store/actions/table.actions';
+import {Observable} from 'rxjs';
+import {initialLoad, keyupLetter} from '../../store/actions/table.actions';
 import {AppState} from '../../store/states/RegexWord';
+import {StoreManagerService} from '../../services/store-manager.service';
 
 
 @Component({
@@ -21,16 +22,11 @@ import {AppState} from '../../store/states/RegexWord';
 })
 export class HomePageComponent implements OnInit {
 
-  // table$: Observable<Table>;
-
-  constructor(private wordUpdateService: WordUpdateService, private readonly store: Store<AppState>) {
-    // this.table$ = this.store.select(state => state).pipe(tap(data => console.log("table tap : ", data)));
+  constructor(private wordUpdateService: WordUpdateService, private readonly store: Store<AppState>, private readonly storeManagerService: StoreManagerService) {
   }
 
   get getTable$(): Observable<WordSdd> {
-    return this.store.select(state => state).pipe(map(data => {
-      return (data as any).tableReducer.table
-    }));
+    return this.storeManagerService.currentState$;
   }
 
   ngOnInit(): void {
@@ -43,7 +39,7 @@ export class HomePageComponent implements OnInit {
   }
 
   @HostListener('document:keyup', ['$event'])
-  handleKeyupEvent(event: KeyboardEvent) {
+  handleKeyupEvent() {
     this.store.dispatch(keyupLetter())
   }
 

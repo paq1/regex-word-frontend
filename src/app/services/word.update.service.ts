@@ -46,8 +46,8 @@ export class WordUpdateService {
     return this.storeManagerService.currentState$
       .pipe(
         take(1), // hack: ne retrigger pas le state si le state change
-        mergeMap(currentState => {
-          const wordSdd = (currentState as AppState).table
+        mergeMap(currentTable => {
+          const wordSdd = currentTable
 
           const keyValue = key.toLowerCase();
           const maybeNewLine =
