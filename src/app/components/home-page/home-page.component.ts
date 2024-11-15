@@ -1,32 +1,46 @@
-import {Component, HostListener} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {LineModel} from '../../models/line.model';
-import {NgClass} from '@angular/common';
+import {AsyncPipe, NgClass} from '@angular/common';
 import {WordSdd} from '../../models/word.model';
 import {WordUpdateService} from '../../services/word.update.service';
+import {select, Store} from '@ngrx/store';
+import {Observable} from 'rxjs';
+import {initialLoad, keyupLetter} from '../../store/actions/table.actions';
+import {AppState} from '../../store/states/RegexWord';
+import {selectTable} from '../../store/reducer/reducer';
 
 
 @Component({
   selector: 'app-home-page',
   standalone: true,
   imports: [
-    NgClass
+    NgClass,
+    AsyncPipe
   ],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss'
 })
-export class HomePageComponent {
+export class HomePageComponent implements OnInit {
 
-
-  constructor(private wordUpdateService: WordUpdateService) {
+  constructor(private wordUpdateService: WordUpdateService, private readonly store: Store<AppState>) {
   }
 
-  get wordsSdd(): WordSdd {
-    return this.wordUpdateService.wordsSdd;
+  get getTable$(): Observable<WordSdd> {
+    return this.store.pipe(select(state => selectTable(state)))
+  }
+
+  ngOnInit(): void {
+    this.store.dispatch(initialLoad());
   }
 
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
     this.wordUpdateService.mutateWords(event.key);
+  }
+
+  @HostListener('document:keyup', ['$event'])
+  handleKeyupEvent() {
+    this.store.dispatch(keyupLetter())
   }
 
   isSucceeded(word: LineModel): boolean {

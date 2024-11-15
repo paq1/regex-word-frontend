@@ -12,41 +12,47 @@
     <table>
       <tbody>
 
-        @for (indexword of Array.from(Array(wordsSdd.try).keys()); track indexword) {
-
-          @if (indexword < wordsSdd.words.length) {
-            <tr [ngClass]="{
-              'line-empty': isNothing(wordsSdd.words[indexword]),
-              'line-error': isFailed(wordsSdd.words[indexword]),
-              'line-succeed': isSucceeded(wordsSdd.words[indexword])
+        @let table = getTable$ | async;
+        @if (table) {
+          @for (indexword of Array.from(Array(table.try).keys()); track indexword) {
+            @if (indexword < table.words.length) {
+              <tr [ngClass]="{
+              'line-empty': isNothing(table.words[indexword]),
+              'line-error': isFailed(table.words[indexword]),
+              'line-succeed': isSucceeded(table.words[indexword])
             }">
 
-              @for (i of Array.from(Array(wordsSdd.length).keys()); track i) {
+                @for (i of Array.from(Array(table.length).keys()); track i) {
 
-                @if (i <= wordsSdd.words[indexword].word.length - 1) {
-                  <td class="cellule">{{ wordsSdd.words[indexword].word[i] }}</td>
-                } @else {
-                  <td class="cellule">_</td>
+                  @if (i <= table.words[indexword].word.length - 1) {
+                    <td class="cellule">{{ table.words[indexword].word[i] }}</td>
+                  } @else {
+                    <td class="cellule">_</td>
+                  }
                 }
-              }
 
-            </tr>
-          } @else {
-            <tr [ngClass]="{
+              </tr>
+            } @else {
+              <tr [ngClass]="{
               'line-empty': true,
             }">
 
-              @for (i of Array.from(Array(wordsSdd.length).keys()); track i) {
+                @for (i of Array.from(Array(table.length).keys()); track i) {
 
-                @if (i == 0) {
-                  <td class="cellule">{{ wordsSdd.firstLetter }}</td>
-                } @else {
-                  <td class="cellule">_</td>
+                  @if (i == 0) {
+                    <td class="cellule">{{ table.firstLetter }}</td>
+                  } @else {
+                    <td class="cellule">_</td>
+                  }
                 }
-              }
-            </tr>
+              </tr>
+            }
           }
+        } @else {
+          <div>error</div>
         }
+
+
       </tbody>
     </table>
   </div>

@@ -1,0 +1,22 @@
+# todo
+
+- [ ] Tableau de saisie : 
+  - [ ] Afficher le tableau de saisie au milieu de l'écran
+    - [x] Saisie des lettres lorsque la place est disponible et que c'est une lettre
+    - [x] Pouvoir supprimer une lettre lorsqu'on appuie sur backspace
+    - [ ] Valider un saisie lorsque la taille de mot est correcte
+      - [ ] mocker la vérification du server dans un premier temps 
+      - [ ] Contacter le server pour savoir si le mot est correct ou pas
+      - [x] Afficher la ligne en rouge si le mot est faux
+      - [ ] Afficher la ligne en verte si le mot est correct
+      - [x] Afficher la ligne en bleu si elle n'est pas validée
+- [ ] Récupérer la regex du jour
+  - [ ] Mettre en place un mock du server tant qu'il n'est pas dev
+  - [ ] Contacter le serveur pour récupérer la regex du jour
+- [ ] Mettre en place la vue des regles
+- [ ] Visuel :
+  - [ ] Boutons propres
+  - [ ] Blocs qui cache la regex
+  - [ ] Pickaxe qui bouge au dessus des blocs
+  - [ ] Fond bleu pâle
+  - [ ] Effet relax (genre des nuages en animation)
