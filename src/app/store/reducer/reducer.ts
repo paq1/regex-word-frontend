@@ -11,14 +11,17 @@ const initialState: AppState = {
     firstLetter: '',
     words: []
   },
-  lastKeyboardAction: "keyup"
+  lastKeyboardAction: "keyup",
+  currentRegexes: {
+    regexes: []
+  }
 }
 
 export const tableReducer = createReducer(
   initialState,
   on(loadRegexSucceed, (state, {regexApi}) => fromRegexToInitialTable(regexApi)),
   on(pressLetter, (state, {newState}) => {
-    return {table: newState, lastKeyboardAction: "keydown"}
+    return {...state, table: newState, lastKeyboardAction: "keydown"}
   }),
   on(keyupLetter, state => {
     return {
@@ -37,5 +40,6 @@ export const {
   name, // feature name
   reducer, // feature reducer
   selectTable,
-  selectLastKeyboardAction
+  selectLastKeyboardAction,
+  selectCurrentRegexes,
 } = AppFeature;

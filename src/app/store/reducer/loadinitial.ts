@@ -10,6 +10,20 @@ export function fromRegexToInitialTable(regexApi: RegexApiModel): AppState {
       firstLetter: regexApi.wordModel.firstLetter,
       words: []
     },
-    lastKeyboardAction: "keyup"
+    lastKeyboardAction: "keyup",
+    currentRegexes: {
+      regexes: regexApi.regexes.map(data => {
+        if (data.regex) {
+          return {
+            regex: data.regex,
+            readyAt: data.dateEffet
+          };
+        } else {
+          return {
+            readyAt: data.dateEffet
+          };
+        }
+      })
+    }
   };
 }

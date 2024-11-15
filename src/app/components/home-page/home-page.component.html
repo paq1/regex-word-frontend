@@ -2,9 +2,19 @@
 
   <div class="regex-part-container">
 
-    <div class="regex-part">regex 1</div>
-    <div class="regex-part">regex 2</div>
-    <div class="regex-part">regex 3</div>
+    @let regexes = regexes$ | async;
+
+    @if(regexes) {
+      @for(regex of regexes.regexes; track regex) {
+
+        @if(regex?.regex) {
+          <div class="regex-part">{{ regex?.regex }}</div>
+        } @else {
+          <div class="regex-part">{{ regex.readyAt | date: 'HH:mm' }}</div>
+        }
+
+      }
+    }
 
   </div>
 

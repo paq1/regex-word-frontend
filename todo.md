@@ -15,7 +15,7 @@
   - [ ] Popup de victoire lorsque le mot est trouvé
   - [ ] Popup de défaite lorsque toutes les tentatives ont échoués
 - [ ] Récupérer la regex du jour
-  - [ ] Mocker la rep de la regex du server tant qu'il n'est pas dev
+  - [x] Mocker la rep de la regex du server tant qu'il n'est pas dev
   - [ ] Contacter le serveur pour récupérer la regex du jour
 - [ ] Mettre en place la vue des regles
 - [ ] Visuel :

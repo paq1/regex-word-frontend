@@ -22,20 +22,20 @@ export class RegexWordApiService {
     })
   }
 
+  // TODO : contacter l'api pour récupérer les regexes
   fetchRegex(): Observable<RegexApiModel> {
     return of({
       regexes: [
         {
-          regex: "xxx",
+          regex: "(az)",
           dateEffet: new Date(),
         },
         {
-          regex: "xxx 2",
+          regex: "(er)",
           dateEffet: new Date(),
         },
         {
-          regex: "xxx 3",
-          dateEffet: new Date(),
+          dateEffet: new Date(2000, 1, 1, 22, 30),
         }
       ],
       wordModel: {
