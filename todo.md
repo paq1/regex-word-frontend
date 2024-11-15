@@ -5,13 +5,17 @@
     - [x] Saisie des lettres lorsque la place est disponible et que c'est une lettre
     - [x] Pouvoir supprimer une lettre lorsqu'on appuie sur backspace
     - [ ] Valider un saisie lorsque la taille de mot est correcte
-      - [ ] mocker la vérification du server dans un premier temps 
+      - [x] Mocker la vérification du server dans un premier temps 
       - [ ] Contacter le server pour savoir si le mot est correct ou pas
       - [x] Afficher la ligne en rouge si le mot est faux
-      - [ ] Afficher la ligne en verte si le mot est correct
+      - [x] Afficher la ligne en verte si le mot est correct
       - [x] Afficher la ligne en bleu si elle n'est pas validée
+      - [x] Bloquer la saisie si le mot est trouver
+- [ ] Popup
+  - [ ] Popup de victoire lorsque le mot est trouvé
+  - [ ] Popup de défaite lorsque toutes les tentatives ont échoués
 - [ ] Récupérer la regex du jour
-  - [ ] Mettre en place un mock du server tant qu'il n'est pas dev
+  - [ ] Mocker la rep de la regex du server tant qu'il n'est pas dev
   - [ ] Contacter le serveur pour récupérer la regex du jour
 - [ ] Mettre en place la vue des regles
 - [ ] Visuel :
