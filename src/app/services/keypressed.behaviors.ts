@@ -2,7 +2,6 @@ import {WordSdd} from '../models/word.model';
 import {RegexWordApiService} from './regex-word-api.service';
 import {map, mergeMap, Observable, of} from 'rxjs';
 
-
 export abstract class CoRKeyPressed {
 
   next: CoRKeyPressed | undefined;
@@ -99,11 +98,11 @@ export class LetterKeyPressed extends CoRKeyPressed {
   }
 
   override resolve_children(from: WordSdd, key: string): Observable<WordSdd | undefined> {
-    if (this.isLetter(key.toLowerCase())) {
+    if (LetterKeyPressed.isLetter(key)) {
       const currentWord = from.words[from.currentIndex];
 
       if (currentWord.word.length <= from.length - 1) {
-        return of({...from, words: [...from.words.slice(0, -1), {word: `${currentWord.word}${key}`}]});
+        return of({...from, words: [...from.words.slice(0, -1), {word: `${currentWord.word}${key.toUpperCase()}`}]});
       } else {
         return of(from);
       }
@@ -112,7 +111,7 @@ export class LetterKeyPressed extends CoRKeyPressed {
     }
   }
 
-  isLetter(key: string): boolean {
+  static isLetter(key: string): boolean {
     const sanitizeKey = key.toLowerCase();
     const test = (/[a-z]+/gm).test(sanitizeKey);
     return test && key.length === 1;
