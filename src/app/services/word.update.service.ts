@@ -3,10 +3,10 @@ import {WordSdd} from '../models/word.model';
 import {BackspaceKeyPressed, CoRKeyPressed, EnterKeyPressed, LetterKeyPressed} from './keypressed.behaviors';
 import {RegexWordApiService} from './regex-word-api.service';
 import {map, mergeMap, Observable, take} from 'rxjs';
-import {Store} from '@ngrx/store';
+import {select, Store} from '@ngrx/store';
 import {pressLetter} from '../store/actions/table.actions';
 import {AppState} from '../store/states/RegexWord';
-import {StoreManagerService} from './store-manager.service';
+import {selectTable} from '../store/reducer/reducer';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,6 @@ export class WordUpdateService {
   constructor(
     private readonly regexWordApiService: RegexWordApiService,
     private readonly store: Store<AppState>,
-    private readonly storeManagerService: StoreManagerService,
   ) {
     this.corKeyPressed = new LetterKeyPressed(
       new EnterKeyPressed(
@@ -43,7 +42,7 @@ export class WordUpdateService {
   }
 
   handleKeypress(key: string): Observable<WordSdd> {
-    return this.storeManagerService.currentState$
+    return this.store.pipe(select(state => selectTable(state)))
       .pipe(
         take(1), // hack: ne retrigger pas le state si le state change
         mergeMap(currentTable => {

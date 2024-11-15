@@ -3,11 +3,11 @@ import {LineModel} from '../../models/line.model';
 import {AsyncPipe, NgClass} from '@angular/common';
 import {WordSdd} from '../../models/word.model';
 import {WordUpdateService} from '../../services/word.update.service';
-import {Store} from '@ngrx/store';
+import {select, Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
 import {initialLoad, keyupLetter} from '../../store/actions/table.actions';
 import {AppState} from '../../store/states/RegexWord';
-import {StoreManagerService} from '../../services/store-manager.service';
+import {selectTable} from '../../store/reducer/reducer';
 
 
 @Component({
@@ -22,11 +22,11 @@ import {StoreManagerService} from '../../services/store-manager.service';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor(private wordUpdateService: WordUpdateService, private readonly store: Store<AppState>, private readonly storeManagerService: StoreManagerService) {
+  constructor(private wordUpdateService: WordUpdateService, private readonly store: Store<AppState>) {
   }
 
   get getTable$(): Observable<WordSdd> {
-    return this.storeManagerService.currentState$;
+    return this.store.pipe(select(state => selectTable(state)))
   }
 
   ngOnInit(): void {
