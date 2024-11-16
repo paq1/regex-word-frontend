@@ -1,11 +1,11 @@
 import {BackspaceKeyPressed, CoRKeyPressed, EnterKeyPressed, LetterKeyPressed} from './keypressed.behaviors';
 import {RegexWordApiService} from './regex-word-api.service';
-import {WordSdd} from '../models/word.model';
+import {TableSdd} from '../models/word.model';
 
 describe('CoRKeyPressed', () => {
   let service: CoRKeyPressed;
   let regexWordApiService: RegexWordApiService
-  let baseWordSdd: WordSdd;
+  let baseWordSdd: TableSdd;
 
   beforeEach(() => {
     regexWordApiService = new RegexWordApiService();
@@ -26,7 +26,7 @@ describe('CoRKeyPressed', () => {
   it('should incr index and isSucceed false when key pressed is enter and length is word.length', () => {
 
     let key = "enter";
-    let oldWord: WordSdd = {...baseWordSdd, words: [{word: "abcdef"}]};
+    let oldWord: TableSdd = {...baseWordSdd, words: [{word: "abcdef"}]};
 
     service
       .resolve(oldWord, key)
@@ -42,7 +42,7 @@ describe('CoRKeyPressed', () => {
   it('should do nothing if length < word.length', () => {
 
     let key = "enter";
-    let oldWord: WordSdd = {...baseWordSdd, length: 6, currentIndex: 0, words: [{word: "abcde"}]};
+    let oldWord: TableSdd = {...baseWordSdd, length: 6, currentIndex: 0, words: [{word: "abcde"}]};
 
     service
       .resolve(oldWord, key)
@@ -58,7 +58,7 @@ describe('CoRKeyPressed', () => {
   it('should not incr index and isSucceed false when key pressed is enter and length is word.length and table is completed', () => {
 
     let key = "enter";
-    let oldWord: WordSdd = {
+    let oldWord: TableSdd = {
       ...baseWordSdd,
       currentIndex: 5,
       words: [
@@ -105,7 +105,7 @@ describe('CoRKeyPressed', () => {
   it('should add uppercase letter when key is letter and word.length < length', () => {
 
     let key = "a";
-    let oldWord: WordSdd = {
+    let oldWord: TableSdd = {
       ...baseWordSdd,
       currentIndex: 0,
       words: [
@@ -132,7 +132,7 @@ describe('CoRKeyPressed', () => {
   it('should not add key when key is not letter and word.length < length', () => {
 
     let key = "1";
-    let oldWord: WordSdd = {
+    let oldWord: TableSdd = {
       ...baseWordSdd,
       currentIndex: 0,
       words: [
@@ -152,7 +152,7 @@ describe('CoRKeyPressed', () => {
   it('should do nothing when key is letter and word.length === length', () => {
 
     let key = "a";
-    let oldWord: WordSdd = {
+    let oldWord: TableSdd = {
       ...baseWordSdd,
       currentIndex: 0,
       words: [
@@ -179,7 +179,7 @@ describe('CoRKeyPressed', () => {
   it('should delete letter when key is backspace and letter is present', () => {
 
     let key = "backspace";
-    let oldWord: WordSdd = {
+    let oldWord: TableSdd = {
       ...baseWordSdd,
       currentIndex: 0,
       words: [
@@ -206,7 +206,7 @@ describe('CoRKeyPressed', () => {
   it('should not delete letter when key is backspace and not letter is present', () => {
 
     let key = "backspace";
-    let oldWord: WordSdd = {
+    let oldWord: TableSdd = {
       ...baseWordSdd,
       currentIndex: 0,
       words: [
@@ -228,7 +228,7 @@ describe('CoRKeyPressed', () => {
   it('should delete letter and isSucceed take undefined when key is backspace and letter is present and all word table is present', () => {
 
     let key = "backspace";
-    let oldWord: WordSdd = {
+    let oldWord: TableSdd = {
       ...baseWordSdd,
       currentIndex: 0,
       words: [

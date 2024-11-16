@@ -1,5 +1,5 @@
 import {RegexApiModel} from '../../models/regex-api.model';
-import {AppState} from '../states/RegexWord';
+import {AppState, StatusEnum} from '../states/RegexWord';
 
 export function fromRegexToInitialTable(regexApi: RegexApiModel): AppState {
   return {
@@ -24,6 +24,7 @@ export function fromRegexToInitialTable(regexApi: RegexApiModel): AppState {
           };
         }
       })
-    }
+    },
+    status: StatusEnum.InGame
   };
 }

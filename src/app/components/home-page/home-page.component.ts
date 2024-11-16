@@ -1,8 +1,8 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import {LineModel} from '../../models/line.model';
 import {AsyncPipe, DatePipe, NgClass} from '@angular/common';
-import {WordSdd} from '../../models/word.model';
-import {WordUpdateService} from '../../services/word.update.service';
+import {TableSdd} from '../../models/word.model';
+import {KeypressedHandlerService} from '../../services/keypressed-handler.service';
 import {select, Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
 import {initialLoad, keyupLetter} from '../../store/actions/table.actions';
@@ -23,10 +23,10 @@ import {selectCurrentRegexes, selectTable} from '../../store/reducer/reducer';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor(private wordUpdateService: WordUpdateService, private readonly store: Store<AppState>) {
+  constructor(private wordUpdateService: KeypressedHandlerService, private readonly store: Store<AppState>) {
   }
 
-  get getTable$(): Observable<WordSdd> {
+  get getTable$(): Observable<TableSdd> {
     return this.store.pipe(select(state => selectTable(state)))
   }
 
@@ -40,7 +40,7 @@ export class HomePageComponent implements OnInit {
 
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
-    this.wordUpdateService.mutateWords(event.key);
+    this.wordUpdateService.onKeyPressed(event.key);
   }
 
   @HostListener('document:keyup', ['$event'])

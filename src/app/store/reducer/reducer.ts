@@ -1,6 +1,6 @@
 import {createFeature, createReducer, on} from '@ngrx/store';
-import {keyupLetter, loadRegexSucceed, pressLetter} from '../actions/table.actions';
-import {AppState} from '../states/RegexWord';
+import {keyupLetter, loadRegexSucceed, updateTable} from '../actions/table.actions';
+import {AppState, StatusEnum} from '../states/RegexWord';
 import {fromRegexToInitialTable} from './loadinitial';
 
 const initialState: AppState = {
@@ -14,14 +14,15 @@ const initialState: AppState = {
   lastKeyboardAction: "keyup",
   currentRegexes: {
     regexes: []
-  }
+  },
+  status: StatusEnum.InGame
 }
 
 export const tableReducer = createReducer(
   initialState,
   on(loadRegexSucceed, (state, {regexApi}) => fromRegexToInitialTable(regexApi)),
-  on(pressLetter, (state, {newState}) => {
-    return {...state, table: newState, lastKeyboardAction: "keydown"}
+  on(updateTable, (state, {newTable}) => {
+    return {...state, table: newTable, lastKeyboardAction: "keydown"}
   }),
   on(keyupLetter, state => {
     return {
@@ -42,4 +43,5 @@ export const {
   selectTable,
   selectLastKeyboardAction,
   selectCurrentRegexes,
+  selectStatus,
 } = AppFeature;

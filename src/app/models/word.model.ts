@@ -1,6 +1,6 @@
 import {LineModel} from './line.model';
 
-export interface WordSdd {
+export interface TableSdd {
   length: number;
   try: number;
   currentIndex: number;

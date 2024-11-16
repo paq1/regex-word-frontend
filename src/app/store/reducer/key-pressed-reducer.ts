@@ -1,7 +1,7 @@
 import {CoRKeyPressed} from '../../services/keypressed.behaviors';
-import {WordSdd} from '../../models/word.model';
+import {TableSdd} from '../../models/word.model';
 
-export function onKeypressed(state: WordSdd, behavior: CoRKeyPressed, key: string): WordSdd {
+export function onKeypressed(state: TableSdd, behavior: CoRKeyPressed, key: string): TableSdd {
 
   behavior.resolve(state, key)
 

@@ -1,4 +1,4 @@
-import {WordSdd} from '../models/word.model';
+import {TableSdd} from '../models/word.model';
 import {RegexWordApiService} from './regex-word-api.service';
 import {map, mergeMap, Observable, of} from 'rxjs';
 
@@ -10,7 +10,7 @@ export abstract class CoRKeyPressed {
     this.next = next;
   }
 
-  resolve(fromWord: WordSdd, key: string): Observable<WordSdd | undefined> {
+  resolve(fromWord: TableSdd, key: string): Observable<TableSdd | undefined> {
 
     return this.resolve_children(fromWord, key)
       .pipe(
@@ -29,7 +29,7 @@ export abstract class CoRKeyPressed {
       );
   }
 
-  abstract resolve_children(from: WordSdd, key: string): Observable<WordSdd | undefined>
+  abstract resolve_children(from: TableSdd, key: string): Observable<TableSdd | undefined>
 }
 
 export class EnterKeyPressed extends CoRKeyPressed {
@@ -41,7 +41,7 @@ export class EnterKeyPressed extends CoRKeyPressed {
     super(next);
   }
 
-  override resolve_children(from: WordSdd, key: string): Observable<WordSdd | undefined> {
+  override resolve_children(from: TableSdd, key: string): Observable<TableSdd | undefined> {
 
     if (key.toLowerCase() === "enter") {
       const currentWord = from.words[from.currentIndex];
@@ -74,7 +74,7 @@ export class BackspaceKeyPressed extends CoRKeyPressed {
     super(next);
   }
 
-  override resolve_children(from: WordSdd, key: string): Observable<WordSdd | undefined> {
+  override resolve_children(from: TableSdd, key: string): Observable<TableSdd | undefined> {
     if (key.toLowerCase() === "backspace") {
       const currentWord = from.words[from.currentIndex];
 
@@ -97,7 +97,7 @@ export class LetterKeyPressed extends CoRKeyPressed {
     super(next);
   }
 
-  override resolve_children(from: WordSdd, key: string): Observable<WordSdd | undefined> {
+  override resolve_children(from: TableSdd, key: string): Observable<TableSdd | undefined> {
     if (LetterKeyPressed.isLetter(key)) {
       const currentWord = from.words[from.currentIndex];
 
