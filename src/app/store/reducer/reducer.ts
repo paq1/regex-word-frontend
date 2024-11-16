@@ -19,7 +19,7 @@ const initialState: AppState = {
 
 export const tableReducer = createReducer(
   initialState,
-  on(loadRegexSucceed, (_, {regexApi}) => fromRegexToInitialTable(regexApi)),
+  on(loadRegexSucceed, (_, {regexApi, table}) => fromRegexToInitialTable(regexApi, table)),
   on(updateTable, (state, {newTable}) => {
     return {...state, table: newTable}
   }),

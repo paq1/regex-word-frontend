@@ -7,6 +7,7 @@ import {select, Store} from '@ngrx/store';
 import {updateTable} from '../store/actions/table.actions';
 import {AppState} from '../store/states/RegexWord';
 import {selectTable} from '../store/reducer/reducer';
+import {RegexStorageService} from './regex-storage.service';
 
 
 @Injectable({
@@ -19,6 +20,7 @@ export class KeypressedHandlerService {
   constructor(
     private readonly regexWordApiService: RegexWordApiService,
     private readonly store: Store<AppState>,
+    private readonly regexStorageService: RegexStorageService
   ) {
     this.corKeyPressed = new LetterKeyPressed(
       new EnterKeyPressed(
@@ -50,6 +52,7 @@ export class KeypressedHandlerService {
       }),
       tap(([table, needUpdateTable]) => {
         if (needUpdateTable) {
+          this.regexStorageService.saveTable(table);
           this.store.dispatch(updateTable({newTable: table}));
         } else {
           console.log("game finished");

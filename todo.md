@@ -1,5 +1,6 @@
 # todo
 
+- [ ] Gestion des erreurs
 - [ ] Tableau de saisie : 
   - [ ] Afficher le tableau de saisie au milieu de l'écran
     - [x] Saisie des lettres lorsque la place est disponible et que c'est une lettre
@@ -11,10 +12,9 @@
       - [x] Afficher la ligne en verte si le mot est correct
       - [x] Afficher la ligne en bleu si elle n'est pas validée
       - [x] Bloquer la saisie si le mot est trouvé
-    - [ ] Sauvegarder le tableau dans le local storage
-    - [ ] Effacer le local storage
-      - [ ] Si la sauvegarde date de la veille ?
-      - [ ] Si identifiant data différent <3
+    - [x] Sauvegarder le tableau dans le local storage
+    - [x] Effacer le local storage
+      - [x] Si identifiant data différent <3
 - [ ] Popup
   - [ ] Popup de victoire lorsque le mot est trouvé
   - [ ] Popup de défaite lorsque toutes les tentatives ont échoué
