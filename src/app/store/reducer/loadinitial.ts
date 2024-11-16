@@ -1,17 +1,19 @@
 import {RegexApiModel} from '../../models/regex-api.model';
 import {AppState} from '../states/RegexWord';
+import {SingleJsonApi} from '../../models/jsonapi.model';
 
-export function fromRegexToInitialTable(regexApi: RegexApiModel): AppState {
+export function fromRegexToInitialTable(regexApi: SingleJsonApi<RegexApiModel>): AppState {
   return {
     table: {
-      length: regexApi.wordModel.size,
+      length: regexApi.data.attributes.wordModel.size,
       try: 6,
       currentIndex: 0,
-      firstLetter: regexApi.wordModel.firstLetter,
+      firstLetter: regexApi.data.attributes.wordModel.firstLetter,
       words: []
     },
     currentRegexes: {
-      regexes: regexApi.regexes.map(data => {
+      identifiant: regexApi.data.id,
+      regexes: regexApi.data.attributes.regexes.map(data => {
         if (data.regex) {
           return {
             regex: data.regex,

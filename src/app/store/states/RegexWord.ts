@@ -1,6 +1,7 @@
 import {TableSdd} from '../../models/word.model';
 
 export interface CurrentRegexes {
+  identifiant: string;
   regexes: RegexPart[];
 }
 

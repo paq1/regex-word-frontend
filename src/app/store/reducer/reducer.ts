@@ -12,6 +12,7 @@ const initialState: AppState = {
     words: []
   },
   currentRegexes: {
+    identifiant: "",
     regexes: []
   }
 }

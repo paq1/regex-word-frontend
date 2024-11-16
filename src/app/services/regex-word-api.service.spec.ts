@@ -34,13 +34,13 @@ describe('RegexWordApiService', () => {
   it('should mock regex', () => {
     service.fetchRegex().subscribe({
       next: (apiModel) => {
-        expect(apiModel.wordModel.firstLetter).toEqual("A");
-        expect(apiModel.wordModel.size).toEqual(6);
-        expect(apiModel.regexes.length).toEqual(3);
-        expect(apiModel.regexes[0].regex).toEqual("(az)")
-        expect(apiModel.regexes[1].regex).toEqual("(er)")
-        expect(apiModel.regexes[2].regex).toBeUndefined()
-        expect(apiModel.regexes[2].dateEffet).toEqual(new Date(2000, 1, 1, 22, 30));
+        expect(apiModel.data.attributes.wordModel.firstLetter).toEqual("A");
+        expect(apiModel.data.attributes.wordModel.size).toEqual(6);
+        expect(apiModel.data.attributes.regexes.length).toEqual(3);
+        expect(apiModel.data.attributes.regexes[0].regex).toEqual("(az)")
+        expect(apiModel.data.attributes.regexes[1].regex).toEqual("(er)")
+        expect(apiModel.data.attributes.regexes[2].regex).toBeUndefined()
+        expect(apiModel.data.attributes.regexes[2].dateEffet).toEqual(new Date(2000, 1, 1, 22, 30));
       }
     });
   });
