@@ -5,7 +5,7 @@ import {TableSdd} from '../../models/word.model';
 import {KeypressedHandlerService} from '../../services/keypressed-handler.service';
 import {select, Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
-import {initialLoad, keyupLetter} from '../../store/actions/table.actions';
+import {initialLoad} from '../../store/actions/table.actions';
 import {AppState, CurrentRegexes} from '../../store/states/RegexWord';
 import {selectCurrentRegexes, selectTable} from '../../store/reducer/reducer';
 
@@ -41,11 +41,6 @@ export class HomePageComponent implements OnInit {
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
     this.wordUpdateService.onKeyPressed(event.key);
-  }
-
-  @HostListener('document:keyup', ['$event'])
-  handleKeyupEvent() {
-    this.store.dispatch(keyupLetter())
   }
 
   isSucceeded(word: LineModel): boolean {

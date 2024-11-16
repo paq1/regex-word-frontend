@@ -9,15 +9,7 @@ export interface RegexPart {
   readyAt: Date;
 }
 
-export enum StatusEnum {
-  InGame = 'in_game',
-  Win = 'win',
-  Lose = 'lose',
-}
-
 export interface AppState {
   table: TableSdd;
-  lastKeyboardAction: string;
   currentRegexes: CurrentRegexes;
-  status: StatusEnum;
 }

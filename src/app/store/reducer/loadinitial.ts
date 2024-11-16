@@ -1,5 +1,5 @@
 import {RegexApiModel} from '../../models/regex-api.model';
-import {AppState, StatusEnum} from '../states/RegexWord';
+import {AppState} from '../states/RegexWord';
 
 export function fromRegexToInitialTable(regexApi: RegexApiModel): AppState {
   return {
@@ -10,7 +10,6 @@ export function fromRegexToInitialTable(regexApi: RegexApiModel): AppState {
       firstLetter: regexApi.wordModel.firstLetter,
       words: []
     },
-    lastKeyboardAction: "keyup",
     currentRegexes: {
       regexes: regexApi.regexes.map(data => {
         if (data.regex) {
@@ -25,6 +24,5 @@ export function fromRegexToInitialTable(regexApi: RegexApiModel): AppState {
         }
       })
     },
-    status: StatusEnum.InGame
   };
 }
