@@ -23,6 +23,8 @@
   - [x] Mocker la réponse de la regex du server tant qu'il n'est pas dev
   - [ ] Contacter le serveur pour récupérer la regex du jour
 - [x] Mettre en place la vue des règles
+- [ ] Changer le favicon
+- [x] Changer la font dans le tableau
 - [ ] Footer ?
 - [ ] Page dev
 - [ ] Visuel :
