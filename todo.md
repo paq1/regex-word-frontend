@@ -27,7 +27,7 @@
 - [ ] Footer ?
 - [ ] Page dev
 - [ ] Visuel :
-  - [ ] Boutons propres
+  - [x] Boutons propres
   - [ ] Blocs qui cache la regex
   - [ ] Pickaxe qui bouge au-dessus des blocs
   - [ ] Fond bleu pâle

@@ -1,7 +1,36 @@
+.header-container {
+  padding-top: 16px;
+  padding-bottom: 16px;
+  background-color: aquamarine;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+.header-title {
+  margin-left: 64px;
+  font-family: 'Minecraft', sans-serif;
+  font-size: 30px;
+}
+
 .header-btns-container {
+  margin-right: 64px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: aquamarine;
   height: 50px;
+}
+
+.header-btn {
+  font-family: 'Minecraft', sans-serif;
+  font-size: 20px;
+  border-radius: 10px;
+  height: 30px;
+
+  &:hover {
+    background-color: mediumpurple;
+    color: white;
+    cursor: pointer;
+  }
 }
