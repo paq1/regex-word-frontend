@@ -16,19 +16,18 @@
 - [ ] Contacter le server pour savoir si le mot est correct ou pas :
   - [x] Mocker la vérification du server dans un premier temps
   - [ ] Retirer le mock et call l'api
-- [ ] Popup
-  - [ ] Popup de victoire lorsque le mot est trouvé
-  - [ ] Popup de défaite lorsque toutes les tentatives ont échoué
+- [ ] Nice: Popup
+  - [ ] Nice: Popup de victoire lorsque le mot est trouvé
+  - [ ] Nice: Popup de défaite lorsque toutes les tentatives ont échoué
 - [ ] Récupérer la regex du jour
   - [x] Mocker la réponse de la regex du server tant qu'il n'est pas dev
   - [ ] Contacter le serveur pour récupérer la regex du jour
-- [ ] Mettre en place la vue des règles
-  - [ ] mettre des screens shot et explication
+- [x] Mettre en place la vue des règles
 - [ ] Footer ?
 - [ ] Page dev
 - [ ] Visuel :
   - [x] Boutons propres
-  - [ ] Blocs qui cache la regex
-  - [ ] Pickaxe qui bouge au-dessus des blocs
+  - [x] Blocs qui cache la regex
+  - [x] Pickaxe qui bouge au-dessus des blocs
   - [ ] Fond bleu pâle
   - [ ] Effet relax (genre des nuages en animation)

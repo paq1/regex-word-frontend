@@ -1,0 +1,19 @@
+.rules-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.intro-bloc {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: Minecraft, sans-serif;
+  width: 600px;
+}
+
+.description {
+  font-size: 25px;
+}
