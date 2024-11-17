@@ -36,8 +36,7 @@ export class RegexWordApiService {
               dateEffet: new Date(),
             },
             {
-              regex: "(er)",
-              dateEffet: new Date(),
+              dateEffet: new Date(2000, 1, 1, 16, 30),
             },
             {
               dateEffet: new Date(2000, 1, 1, 22, 30),

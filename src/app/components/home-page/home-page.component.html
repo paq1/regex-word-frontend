@@ -10,7 +10,21 @@
         @if(regex?.regex) {
           <div class="regex-part">{{ regex?.regex }}</div>
         } @else {
-          <div class="regex-part">{{ regex.readyAt | date: 'HH:mm' }}</div>
+
+          <div class="regex-locked-container">
+            <div class="pickaxe">
+              <img class="pickaxe-img" src="assets/sprites/pickaxe.png" alt="pickaxe">
+            </div>
+
+            <div class="obsidian-container">
+              @for(id of Array.from(Array(4).keys()); track id) {
+                <img class="obsidian-img" src="assets/sprites/obsidian.png" alt="obsidian">
+              }
+            </div>
+
+            <div class="regex-part regex-part-locked">{{ regex.readyAt | date: 'HH:mm' }}</div>
+
+          </div>
         }
 
       }
