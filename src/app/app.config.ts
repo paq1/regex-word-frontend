@@ -7,6 +7,7 @@ import {routerReducer} from '@ngrx/router-store';
 import {tableReducer} from './store/reducer/reducer';
 import {provideEffects} from '@ngrx/effects';
 import {TableEffects} from './store/effects/TableEffects';
+import {provideHttpClient} from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -21,6 +22,7 @@ export const appConfig: ApplicationConfig = {
           strictActionTypeUniqueness: true,
         },
       }),
+    provideHttpClient(),
     provideState({name: 'app', reducer: tableReducer}),
     provideEffects([TableEffects]),
     provideZoneChangeDetection({eventCoalescing: true}),

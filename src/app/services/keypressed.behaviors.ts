@@ -50,7 +50,7 @@ export class EnterKeyPressed extends CoRKeyPressed {
           .regexWordApiService
           .checkWordValid(currentWord.word)
           .pipe(
-            map((result) => result.data.isValid),
+            map((result) => result.data.attributes.is_valid),
             map((isValid) => {
               return {
                 ...from,

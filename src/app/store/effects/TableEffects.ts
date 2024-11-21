@@ -25,10 +25,10 @@ export class TableEffects {
 
           this.regexStorageService.saveCurrentRegex({
             identifiant: data.data.id,
-            regexes: data.data.attributes.regexes.map(current => {
+            regexes: data.data.attributes.regex_parts.map(current => {
               return {
                 regex: current.regex,
-                readyAt: current.dateEffet
+                readyAt: current.active_at
               }
             })
           });

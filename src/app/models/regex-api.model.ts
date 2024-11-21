@@ -1,14 +1,14 @@
 export interface RegexApiModel {
-  regexes: OneRegexModel[];
-  wordModel: WordModel;
+  regex_parts: OneRegexModel[];
+  word_info: WordModel;
 }
 
 export interface OneRegexModel {
   regex?: string;
-  dateEffet: Date;
+  active_at?: Date;
 }
 
 export interface WordModel {
-  firstLetter: string;
+  first_letter: string;
   size: number;
 }

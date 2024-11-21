@@ -7,7 +7,7 @@ export interface CurrentRegexes {
 
 export interface RegexPart {
   regex?: string;
-  readyAt: Date;
+  readyAt?: Date;
 }
 
 export interface AppState {
