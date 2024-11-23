@@ -1,12 +1,15 @@
 import {TestBed} from '@angular/core/testing';
 
 import {RegexWordApiService} from './regex-word-api.service';
+import {provideHttpClient} from '@angular/common/http';
 
 describe('RegexWordApiService', () => {
   let service: RegexWordApiService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [provideHttpClient()],
+    });
     service = TestBed.inject(RegexWordApiService);
   });
 

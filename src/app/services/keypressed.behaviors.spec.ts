@@ -1,6 +1,8 @@
 import {BackspaceKeyPressed, CoRKeyPressed, EnterKeyPressed, LetterKeyPressed} from './keypressed.behaviors';
 import {RegexWordApiService} from './regex-word-api.service';
 import {TableSdd} from '../models/word.model';
+import {TestBed} from '@angular/core/testing';
+import {HttpClient, provideHttpClient} from '@angular/common/http';
 
 describe('CoRKeyPressed', () => {
   let service: CoRKeyPressed;
@@ -8,7 +10,14 @@ describe('CoRKeyPressed', () => {
   let baseWordSdd: TableSdd;
 
   beforeEach(() => {
-    regexWordApiService = new RegexWordApiService();
+
+    TestBed.configureTestingModule({
+      providers: [provideHttpClient()]
+    })
+
+    const httpClient = TestBed.inject(HttpClient);
+
+    regexWordApiService = new RegexWordApiService(httpClient);
     service = new EnterKeyPressed(regexWordApiService, new BackspaceKeyPressed(new LetterKeyPressed(undefined)));
     baseWordSdd = {
       length: 6,
