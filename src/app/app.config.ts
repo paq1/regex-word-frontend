@@ -4,9 +4,9 @@ import {provideRouter} from '@angular/router';
 import {routes} from './app.routes';
 import {provideState, provideStore} from '@ngrx/store';
 import {routerReducer} from '@ngrx/router-store';
-import {tableReducer} from './store/reducer/reducer';
+import {tableReducer} from './feature/regexword/store/reducer/reducer';
 import {provideEffects} from '@ngrx/effects';
-import {TableEffects} from './store/effects/TableEffects';
+import {TableEffects} from './feature/regexword/store/effects/TableEffects';
 import {provideHttpClient} from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {

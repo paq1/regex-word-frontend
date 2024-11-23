@@ -1,9 +1,9 @@
-import {RegexApiModel} from '../../feature/regexword/models/regex-api.model';
-import {AppState} from '../states/RegexWord';
-import {SingleJsonApi} from '../../core/models/jsonapi.model';
-import {TableSdd} from '../../feature/regexword/models/word.model';
+import {RegexApiModel} from '../../models/regex-api.model';
+import {RegexWordState} from '../states/RegexWord';
+import {SingleJsonApi} from '../../../../core/models/jsonapi.model';
+import {TableSdd} from '../../models/word.model';
 
-export function fromRegexToInitialTable(regexApi: SingleJsonApi<RegexApiModel>, oldTable: TableSdd | null): AppState {
+export function fromRegexToInitialTable(regexApi: SingleJsonApi<RegexApiModel>, oldTable: TableSdd | null): RegexWordState {
   const regexes = {
     identifiant: regexApi.data.id,
       regexes: regexApi.data.attributes.regex_parts.map(data => {

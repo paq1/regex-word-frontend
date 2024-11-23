@@ -1,4 +1,4 @@
-import {TableSdd} from '../../feature/regexword/models/word.model';
+import {TableSdd} from '../../models/word.model';
 
 export interface CurrentRegexes {
   identifiant: string;
@@ -10,7 +10,7 @@ export interface RegexPart {
   readyAt?: Date;
 }
 
-export interface AppState {
+export interface RegexWordState {
   table: TableSdd;
   currentRegexes: CurrentRegexes;
 }

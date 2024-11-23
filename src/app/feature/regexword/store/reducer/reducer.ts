@@ -1,9 +1,9 @@
 import {createFeature, createReducer, on} from '@ngrx/store';
 import {loadRegexSucceed, updateTable} from '../actions/table.actions';
-import {AppState} from '../states/RegexWord';
+import {RegexWordState} from '../states/RegexWord';
 import {fromRegexToInitialTable} from './loadinitial';
 
-const initialState: AppState = {
+const initialState: RegexWordState = {
   table: {
     length: 0,
     try: 6,

@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TableauRegexComponent } from './tableau-regex.component';
+import {provideStore} from '@ngrx/store';
+import {KeypressedHandlerService} from '../../services/keypressed-handler.service';
+import {provideHttpClient} from '@angular/common/http';
 
 describe('TableauRegexComponent', () => {
   let component: TableauRegexComponent;
@@ -8,6 +11,7 @@ describe('TableauRegexComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      providers: [provideStore(), KeypressedHandlerService, provideHttpClient()],
       imports: [TableauRegexComponent]
     })
     .compileComponents();

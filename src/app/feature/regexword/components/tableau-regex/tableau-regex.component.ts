@@ -3,11 +3,11 @@ import {AsyncPipe, DatePipe, NgClass} from "@angular/common";
 import {ColoriseSpacialCharComponent} from "../../../../shared/colorise-spacial-char/colorise-spacial-char.component";
 import {KeypressedHandlerService} from '../../services/keypressed-handler.service';
 import {select, Store} from '@ngrx/store';
-import {AppState, CurrentRegexes} from '../../../../store/states/RegexWord';
+import {RegexWordState, CurrentRegexes} from '../../store/states/RegexWord';
 import {Observable} from 'rxjs';
 import {TableSdd} from '../../models/word.model';
-import {selectCurrentRegexes, selectTable} from '../../../../store/reducer/reducer';
-import {initialLoad} from '../../../../store/actions/table.actions';
+import {selectCurrentRegexes, selectTable} from '../../store/reducer/reducer';
+import {initialLoad} from '../../store/actions/table.actions';
 import {LineModel} from '../../models/line.model';
 
 @Component({
@@ -23,7 +23,7 @@ import {LineModel} from '../../models/line.model';
   styleUrl: './tableau-regex.component.scss'
 })
 export class TableauRegexComponent implements OnInit {
-  constructor(private wordUpdateService: KeypressedHandlerService, private readonly store: Store<AppState>) {
+  constructor(private wordUpdateService: KeypressedHandlerService, private readonly store: Store<RegexWordState>) {
   }
 
   get getTable$(): Observable<TableSdd> {

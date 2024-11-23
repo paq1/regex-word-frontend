@@ -4,9 +4,9 @@ import {BackspaceKeyPressed, CoRKeyPressed, EnterKeyPressed, LetterKeyPressed} f
 import {RegexWordApiService} from './regex-word-api.service';
 import {map, mergeMap, Observable, of, take, tap} from 'rxjs';
 import {select, Store} from '@ngrx/store';
-import {updateTable} from '../../../store/actions/table.actions';
-import {AppState} from '../../../store/states/RegexWord';
-import {selectTable} from '../../../store/reducer/reducer';
+import {updateTable} from '../store/actions/table.actions';
+import {RegexWordState} from '../store/states/RegexWord';
+import {selectTable} from '../store/reducer/reducer';
 import {RegexStorageService} from './regex-storage.service';
 
 
@@ -19,7 +19,7 @@ export class KeypressedHandlerService {
 
   constructor(
     private readonly regexWordApiService: RegexWordApiService,
-    private readonly store: Store<AppState>,
+    private readonly store: Store<RegexWordState>,
     private readonly regexStorageService: RegexStorageService
   ) {
     this.corKeyPressed = new LetterKeyPressed(
