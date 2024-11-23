@@ -10,14 +10,14 @@ export const routes: Routes = [
   },
   {
     path: 'home-page',
-    loadComponent: () => import('./components/home-page/home-page.component').then(c => c.HomePageComponent)
+    loadComponent: () => import('./feature/regexword/components/tableau-regex/tableau-regex.component').then(c => c.TableauRegexComponent)
   },
   {
     path: 'rules',
-    loadComponent: () => import('./components/rules/rules.component').then(c => c.RulesComponent)
+    loadComponent: () => import('./feature/rules/rules.component').then(c => c.RulesComponent)
   },
   {
     path: '**',
-    loadComponent: () => import('./components/home-page/home-page.component').then(c => c.HomePageComponent)
+    loadComponent: () => import('./feature/regexword/components/tableau-regex/tableau-regex.component').then(c => c.TableauRegexComponent)
   },
 ];

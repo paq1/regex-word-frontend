@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {LocalStorageService} from './local-storage.service';
-import {CurrentRegexes} from '../store/states/RegexWord';
+import {LocalStorageService} from '../../../shared/local-storage/local-storage.service';
+import {CurrentRegexes} from '../../../store/states/RegexWord';
 import {TableSdd} from '../models/word.model';
 
 @Injectable({

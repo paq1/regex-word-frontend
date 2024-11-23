@@ -1,5 +1,5 @@
 @if (regex) {
-  @for (letter of regex; track letter) {
+  @for (letter of regex; track $index) {
     @if (isSpecialChar(letter)) {
       <span style="color: red">{{letter}}</span>
     } @else {

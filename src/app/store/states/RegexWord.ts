@@ -1,4 +1,4 @@
-import {TableSdd} from '../../models/word.model';
+import {TableSdd} from '../../feature/regexword/models/word.model';
 
 export interface CurrentRegexes {
   identifiant: string;

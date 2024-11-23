@@ -1,9 +1,9 @@
 import {Actions, createEffect, ofType} from '@ngrx/effects';
-import {RegexWordApiService} from '../../services/regex-word-api.service';
+import {RegexWordApiService} from '../../feature/regexword/services/regex-word-api.service';
 import {initialLoad, loadRegexFailed, loadRegexSucceed} from '../actions/table.actions';
 import {catchError, map, mergeMap, of} from 'rxjs';
 import {Injectable} from '@angular/core';
-import {RegexStorageService} from '../../services/regex-storage.service';
+import {RegexStorageService} from '../../feature/regexword/services/regex-storage.service';
 
 @Injectable()
 export class TableEffects {

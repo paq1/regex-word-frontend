@@ -1,30 +1,28 @@
 import {Component, HostListener, OnInit} from '@angular/core';
-import {LineModel} from '../../models/line.model';
-import {AsyncPipe, DatePipe, NgClass} from '@angular/common';
-import {TableSdd} from '../../models/word.model';
+import {AsyncPipe, DatePipe, NgClass} from "@angular/common";
+import {ColoriseSpacialCharComponent} from "../../../../shared/colorise-spacial-char/colorise-spacial-char.component";
 import {KeypressedHandlerService} from '../../services/keypressed-handler.service';
 import {select, Store} from '@ngrx/store';
+import {AppState, CurrentRegexes} from '../../../../store/states/RegexWord';
 import {Observable} from 'rxjs';
-import {initialLoad} from '../../store/actions/table.actions';
-import {AppState, CurrentRegexes} from '../../store/states/RegexWord';
-import {selectCurrentRegexes, selectTable} from '../../store/reducer/reducer';
-import {ColoriseSpacialCharComponent} from './colorise-spacial-char/colorise-spacial-char.component';
-
+import {TableSdd} from '../../models/word.model';
+import {selectCurrentRegexes, selectTable} from '../../../../store/reducer/reducer';
+import {initialLoad} from '../../../../store/actions/table.actions';
+import {LineModel} from '../../models/line.model';
 
 @Component({
-  selector: 'app-home-page',
+  selector: 'app-tableau-regex',
   standalone: true,
   imports: [
-    NgClass,
     AsyncPipe,
-    DatePipe,
     ColoriseSpacialCharComponent,
+    DatePipe,
+    NgClass,
   ],
-  templateUrl: './home-page.component.html',
-  styleUrl: './home-page.component.scss'
+  templateUrl: './tableau-regex.component.html',
+  styleUrl: './tableau-regex.component.scss'
 })
-export class HomePageComponent implements OnInit {
-
+export class TableauRegexComponent implements OnInit {
   constructor(private wordUpdateService: KeypressedHandlerService, private readonly store: Store<AppState>) {
   }
 
