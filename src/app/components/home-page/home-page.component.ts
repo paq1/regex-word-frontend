@@ -8,6 +8,7 @@ import {Observable} from 'rxjs';
 import {initialLoad} from '../../store/actions/table.actions';
 import {AppState, CurrentRegexes} from '../../store/states/RegexWord';
 import {selectCurrentRegexes, selectTable} from '../../store/reducer/reducer';
+import {ColoriseSpacialCharComponent} from './colorise-spacial-char/colorise-spacial-char.component';
 
 
 @Component({
@@ -16,7 +17,8 @@ import {selectCurrentRegexes, selectTable} from '../../store/reducer/reducer';
   imports: [
     NgClass,
     AsyncPipe,
-    DatePipe
+    DatePipe,
+    ColoriseSpacialCharComponent,
   ],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss'

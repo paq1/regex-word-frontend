@@ -27,5 +27,5 @@ export const appConfig: ApplicationConfig = {
     provideEffects([TableEffects]),
     provideZoneChangeDetection({eventCoalescing: true}),
     provideRouter(routes)
-  ]
+  ],
 };

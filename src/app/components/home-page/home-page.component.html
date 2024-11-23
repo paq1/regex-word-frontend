@@ -6,9 +6,10 @@
 
     @if(regexes) {
       @for(regex of regexes.regexes; track regex) {
-
         @if(regex?.regex) {
-          <div class="regex-part">{{ regex?.regex }}</div>
+
+          <app-colorise-spacial-char class="regex-part" [regex]="regex.regex"></app-colorise-spacial-char>
+
         } @else {
 
           <div class="regex-locked-container">
