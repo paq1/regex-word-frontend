@@ -16,7 +16,12 @@ export class ActionsPanelComponent {
   @Output() isBoomerModeChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   onBoomerMode(): void {
+    this.retireFocus()
     this.isBoomerMode = !this.isBoomerMode;
     this.isBoomerModeChange.emit(this.isBoomerMode);
+  }
+
+  private retireFocus(): void {
+    (document.activeElement as HTMLElement)?.blur();
   }
 }

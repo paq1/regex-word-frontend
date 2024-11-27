@@ -54,7 +54,7 @@ export class EnterKeyPressed extends CoRKeyPressed {
             map((isValid) => {
               return {
                 ...from,
-                words: [...from.words.slice(0, -1), {word: `${currentWord.word}`, isSucceeded: isValid}],
+                words: [...from.words.slice(0, -1), {word: `${currentWord.word}`, isSucceeded: isValid}, {word: `${from.firstLetter}`}],
                 currentIndex: from.currentIndex < from.try - 1 ? from.currentIndex + 1 : from.currentIndex,
               }
             })

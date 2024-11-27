@@ -26,13 +26,14 @@ export function fromRegexToInitialTable(regexApi: SingleJsonApi<RegexApiModel>, 
       currentRegexes: regexes,
     }
   } else {
+    const firstLetter = regexApi.data.attributes.word_info.first_letter;
     return {
       table: {
         length: regexApi.data.attributes.word_info.size,
         try: 6,
         currentIndex: 0,
-        firstLetter: regexApi.data.attributes.word_info.first_letter,
-        words: []
+        firstLetter: firstLetter,
+        words: [{word: `${firstLetter}`}]
       },
       currentRegexes: regexes
     }

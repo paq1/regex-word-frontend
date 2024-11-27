@@ -17,7 +17,11 @@
                 @if (i <= table.words[indexword].word.length - 1) {
                   <td class="cellule">{{ table.words[indexword].word[i] }}</td>
                 } @else {
-                  <td class="cellule">_</td>
+
+                  <td
+                    [ngClass]="{'current-cursor': i == table.words[indexword].word.length &&!isSucceededTable(table)}"
+                    class="cellule"
+                  >_</td>
                 }
               }
 

@@ -37,6 +37,10 @@ export class TableInputComponent implements OnInit {
     this.wordUpdateService.onKeyPressed(event.key);
   }
 
+  isSucceededTable(table: TableSdd): boolean {
+    return !!table.words.find(lineModel => this.isSucceeded(lineModel))
+  }
+
   isSucceeded(word: LineModel): boolean {
     return word.isSucceeded || false;
   };
