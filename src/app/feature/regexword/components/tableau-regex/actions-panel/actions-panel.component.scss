@@ -1,0 +1,35 @@
+
+.actions-parts {
+  margin-top: 25px;
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: row;
+}
+
+.actions-btn {
+  font-family: Minecraft, sans-serif;
+  font-size: 20px;
+  border-radius: 10px;
+  height: 30px;
+
+  &:hover {
+    background-color: mediumpurple;
+    color: white;
+    cursor: pointer;
+  }
+}
+
+.actions-btn-selected {
+  font-family: Minecraft, sans-serif;
+  font-size: 20px;
+  border-radius: 10px;
+  height: 30px;
+  background-color: purple;
+  color: white;
+
+  &:hover {
+    background-color: mediumpurple;
+    color: white;
+    cursor: pointer;
+  }
+}

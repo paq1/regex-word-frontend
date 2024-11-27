@@ -1,0 +1,48 @@
+<div class="grid-word-view-container">
+  <table>
+    <tbody>
+
+      @let table = getTable$ | async;
+      @if (table) {
+        @for (indexword of Array.from(Array(table.try).keys()); track indexword) {
+          @if (indexword < table.words.length) {
+            <tr [ngClass]="{
+              'line-empty': isNothing(table.words[indexword]),
+              'line-error': isFailed(table.words[indexword]),
+              'line-succeed': isSucceeded(table.words[indexword])
+            }">
+
+              @for (i of Array.from(Array(table.length).keys()); track i) {
+
+                @if (i <= table.words[indexword].word.length - 1) {
+                  <td class="cellule">{{ table.words[indexword].word[i] }}</td>
+                } @else {
+                  <td class="cellule">_</td>
+                }
+              }
+
+            </tr>
+          } @else {
+            <tr [ngClass]="{
+              'line-empty': true,
+            }">
+
+              @for (i of Array.from(Array(table.length).keys()); track i) {
+
+                @if (i == 0) {
+                  <td class="cellule">{{ table.firstLetter }}</td>
+                } @else {
+                  <td class="cellule">_</td>
+                }
+              }
+            </tr>
+          }
+        }
+      } @else {
+        <div>error</div>
+      }
+
+
+    </tbody>
+  </table>
+</div>
