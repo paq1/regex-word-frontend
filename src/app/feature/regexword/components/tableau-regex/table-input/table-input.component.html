@@ -8,14 +8,18 @@
           @if (indexword < table.words.length) {
             <tr [ngClass]="{
               'line-empty': isNothing(table.words[indexword]),
-              'line-error': isFailed(table.words[indexword]),
-              'line-succeed': isSucceeded(table.words[indexword])
             }">
 
               @for (i of Array.from(Array(table.length).keys()); track i) {
 
                 @if (i <= table.words[indexword].word.length - 1) {
-                  <td class="cellule">{{ table.words[indexword].word[i] }}</td>
+                  <td
+                    class="cellule"
+                    [ngClass]="{
+                      'line-succeed': getSafeWord(table, indexword)?.valid_position?.includes(i),
+                      'line-error': (indexword < table.currentIndex) && !getSafeWord(table, indexword)?.valid_position?.includes(i),
+                    }"
+                  >{{ table.words[indexword].word[i] }}</td>
                 } @else {
 
                   <td

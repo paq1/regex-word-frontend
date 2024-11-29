@@ -28,6 +28,10 @@ export class TableInputComponent implements OnInit {
     return this.store.pipe(select(state => selectTable(state)))
   }
 
+  getSafeWord(table: TableSdd, index: number): LineModel | undefined {
+    return index <= table.words.length ? table.words[index] : undefined;
+  }
+
   ngOnInit(): void {
     this.store.dispatch(initialLoad());
   }

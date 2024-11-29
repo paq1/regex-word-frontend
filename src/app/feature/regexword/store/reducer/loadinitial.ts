@@ -33,7 +33,7 @@ export function fromRegexToInitialTable(regexApi: SingleJsonApi<RegexApiModel>, 
         try: 6,
         currentIndex: 0,
         firstLetter: firstLetter,
-        words: [{word: `${firstLetter}`}]
+        words: [{word: `${firstLetter}`, valid_position: []}]
       },
       currentRegexes: regexes
     }

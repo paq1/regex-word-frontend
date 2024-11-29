@@ -45,17 +45,17 @@ export class EnterKeyPressed extends CoRKeyPressed {
 
     if (key.toLowerCase() === "enter") {
       const currentWord = from.words[from.currentIndex];
-      if (currentWord.word.length === from.length) {
+      if (currentWord.word.length === from.length && from.currentIndex < from.try) {
         return this
           .regexWordApiService
           .checkWordValid(currentWord.word)
           .pipe(
-            map((result) => result.data.attributes.is_valid),
-            map((isValid) => {
+            map((result) => result.data.attributes),
+            map(({valid_position, is_valid}) => {
               return {
                 ...from,
-                words: [...from.words.slice(0, -1), {word: `${currentWord.word}`, isSucceeded: isValid}, {word: `${from.firstLetter}`}],
-                currentIndex: from.currentIndex < from.try - 1 ? from.currentIndex + 1 : from.currentIndex,
+                words: [...from.words.slice(0, -1), {word: `${currentWord.word}`, isSucceeded: is_valid, valid_position: valid_position}, {word: `${from.firstLetter}`, valid_position: []}],
+                currentIndex: from.currentIndex + 1,
               }
             })
           )
@@ -80,7 +80,7 @@ export class BackspaceKeyPressed extends CoRKeyPressed {
 
       if (currentWord.word.length > 1) {
 
-        return of({...from, words: [...from.words.slice(0, -1), {word: currentWord.word.slice(0, -1)}]});
+        return of({...from, words: [...from.words.slice(0, -1), {word: currentWord.word.slice(0, -1), valid_position: []}]});
 
       } else {
         return of(from);
@@ -102,7 +102,7 @@ export class LetterKeyPressed extends CoRKeyPressed {
       const currentWord = from.words[from.currentIndex];
 
       if (currentWord.word.length <= from.length - 1) {
-        return of({...from, words: [...from.words.slice(0, -1), {word: `${currentWord.word}${key.toUpperCase()}`}]});
+        return of({...from, words: [...from.words.slice(0, -1), {word: `${currentWord.word}${key.toUpperCase()}`, valid_position: []}]});
       } else {
         return of(from);
       }

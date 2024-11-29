@@ -66,7 +66,7 @@ export class KeypressedHandlerService {
     const tableSdd = oldTable
     const keyValue = key.toLowerCase();
     const maybeNewLine =
-      tableSdd.words.length == tableSdd.currentIndex ? [...tableSdd.words, {word: tableSdd.firstLetter}] : tableSdd.words
+      tableSdd.words.length == tableSdd.currentIndex ? [...tableSdd.words, {word: tableSdd.firstLetter, valid_position: []}] : tableSdd.words
     const wordsWithNewLine: TableSdd = {...tableSdd, words: maybeNewLine};
 
     return this.corKeyPressed
