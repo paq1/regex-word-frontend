@@ -1,5 +1,5 @@
 export const environment = {
   production: false,
-  apiRegexword: "http://localhost:8080",
+  apiRegexword: "https://rgw-api.dev.regexword.fr",
   appVersion: require("../../package.json").version,
 };
