@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {RegexPartsComponent} from './regex-parts/regex-parts.component';
 import {TableInputComponent} from './table-input/table-input.component';
 import {ActionsPanelComponent} from './actions-panel/actions-panel.component';
+import {EnvironmentService} from '../../../../core/environment/environment.service';
 
 @Component({
   selector: 'app-tableau-regex',
@@ -22,7 +23,8 @@ export class TableauRegexComponent {
     this.isBoomerMode = $event;
   }
 
-  constructor() {
+  constructor(private readonly environmentService: EnvironmentService) {
+    console.log(`environment variable : ${environmentService.testVar}`);
   }
 
   protected readonly Array = Array;
