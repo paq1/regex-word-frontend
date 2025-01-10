@@ -10,5 +10,3 @@ cat <<EOF > /usr/share/nginx/html/assets/environment.js
   window.__env.VAR_TEST = "${VAR_TEST}";
 })(this);
 
-# Lancer NGINX
-exec "$@"

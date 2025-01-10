@@ -15,4 +15,4 @@ RUN chmod +x /entrypoint.sh
 
 # Commande d'entrée
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ["nginx", "-g", "daemon off;"]
+# CMD ["nginx", "-g", "daemon off;"]
