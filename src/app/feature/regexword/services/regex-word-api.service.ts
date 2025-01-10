@@ -3,18 +3,22 @@ import {Observable} from 'rxjs';
 import {RegexApiModel} from '../models/regex-api.model';
 import {SingleJsonApi} from '../../../core/models/jsonapi.model';
 import {HttpClient} from '@angular/common/http';
-import {environment} from '../../../../environments/environment';
 import {CheckApiModel} from '../models/check-api.model';
+import {EnvironmentService} from '../../../core/environment/environment.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RegexWordApiService {
 
-  urlRegexword = environment.apiRegexword
+  urlRegexword: string;
 
-  constructor(private readonly _httpClient: HttpClient) {
+  constructor(
+    private readonly _httpClient: HttpClient,
+    private readonly environmentService: EnvironmentService,
+  ) {
     console.log('RegexWordApiService');
+    this.urlRegexword = this.environmentService.rgwApiUrl;
   }
 
   checkWordValid(word: string): Observable<SingleJsonApi<CheckApiModel>> {

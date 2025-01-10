@@ -9,7 +9,12 @@ export class EnvironmentService {
 
   private env = (window as any).__env;
 
-  get testVar(): string {
-    return this.env.VAR_TEST || '';
+  get executionEnvironment(): string {
+    console.log(this.env);
+    return this.env.ENV || '';
+  }
+
+  get rgwApiUrl(): string {
+    return this.env.RGW_API_URL || '';
   }
 }

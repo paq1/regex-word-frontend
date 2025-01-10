@@ -24,7 +24,7 @@ export class TableauRegexComponent {
   }
 
   constructor(private readonly environmentService: EnvironmentService) {
-    console.log(`environment variable : ${environmentService.testVar}`);
+    console.log(`environment code : ${environmentService.executionEnvironment}`);
   }
 
   protected readonly Array = Array;

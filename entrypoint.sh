@@ -14,7 +14,8 @@ echo "Writing environment variables to $ENV_CONFIG_FILE"
 cat <<EOF > $ENV_CONFIG_FILE
 (function (window) {
   window.__env = window.__env || {};
-  window.__env.VAR_TEST = "${VAR_TEST}";
+  window.__env.RGW_API_URL = "${RGW_API_URL}";
+  window.__env.ENV = "${ENV}";
 })(this);
 EOF
 
