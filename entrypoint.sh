@@ -21,3 +21,11 @@ EOF
 # Debug : Vérifie si le fichier a été généré correctement
 echo "Generated $ENV_CONFIG_FILE:"
 cat $ENV_CONFIG_FILE
+
+# Vérifie la configuration NGINX avant de démarrer
+echo "Checking NGINX configuration..."
+nginx -t || exit 1
+
+# Démarre NGINX en mode "foreground"
+echo "Starting NGINX..."
+nginx -g "daemon off;"
