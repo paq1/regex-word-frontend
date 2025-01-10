@@ -10,9 +10,9 @@ COPY nginx.conf /etc/nginx/nginx.conf
 COPY --from=builder /app/dist/regex-word-frontend/browser /usr/share/nginx/html
 
 # Script pour injecter les variables d'environnement dans env-config.js
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+# COPY entrypoint.sh /entrypoint.sh
+# RUN chmod +x /entrypoint.sh
 
 # Commande d'entrée
-ENTRYPOINT ["/entrypoint.sh"]
+# ENTRYPOINT ["/entrypoint.sh"]
 # CMD ["nginx", "-g", "daemon off;"]
